@@ -7,17 +7,14 @@ import Header from "../../components/Header";
 
 function Home() {
   return (
-    
     <>
       <Header />
       <Banner image={'favoritos'}/>
       <Container>
-
         { categories.map((category, index) => 
         <Category category={category}>
           { filterCategory(index).map(video => <Card id={video.id} key={video.id}></Card>) }
         </Category>) }
-
       </Container>
       <Footer />
     </>
