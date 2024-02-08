@@ -8,7 +8,7 @@ function filterVideo(videos, searchText) {
 }
 
 function SearcVideoList({ videos }) {
-    const [searchText, setSearchText] = useState("Geografia")
+    const [searchText, setSearchText] = useState("")
     const foundVideos = filterVideo(videos, searchText)
 
     return (
