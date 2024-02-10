@@ -2,10 +2,10 @@ import Slider from "react-slick";
 import "./carousel.css"
 
 function Carousel({ children }) {
-    
+
     const settings = {
         dots: false,
-        infinite: false,
+        infinite: true,
         speed: 300,
         centerMode: false,
         variableWidth: true,
@@ -13,11 +13,11 @@ function Carousel({ children }) {
         // slidesToShow: 5,
         slidesToScrool: 1
     }
-    
+
     return (
         <div>
             <Slider {...settings}>
-                { children }
+                {children}
             </Slider>
         </div>
     )
