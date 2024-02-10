@@ -54,3 +54,22 @@
 .container button:hover {
     background-color: #f44336;
 }
+
+.errors {
+    background-color: #b71c1c;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    font-weight: 500;
+    font-size: 1.050rem;
+}
+
+.buttonAndErrorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

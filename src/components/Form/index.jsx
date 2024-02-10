@@ -4,15 +4,15 @@ import styles from "./Form.module.css"
 
 function Form() {
 
-    const [ url, setUrl ] = useState("")
-    const [ category, setCategory ] = useState("")
-    const [ videos, setVideo ] = useState([])
-    const [ errors, setErrors ] = useState("")
+    const [url, setUrl] = useState("")
+    const [category, setCategory] = useState("")
+    const [videos, setVideo] = useState([])
+    const [errors, setErrors] = useState("")
 
     function valideUrl(url) {
         const regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([a-zA-Z0-9\-_]+)$/
-        
-        if(!regex.test(url) || url.lenght < 43) {
+
+        if (!regex.test(url) || url.lenght < 43) {
             setErrors("ERRO: URL inválida!")
             return false
         } else {
@@ -23,9 +23,9 @@ function Form() {
     function onSave(e) {
         e.preventDefault()
         console.log(url, category)
-        
+
         // Validar category
-        if(!category || category === "-") {
+        if (!category || category === "-") {
             setErrors("ERRO: Escolha uma categoria!")
             return
         } else {
@@ -34,11 +34,11 @@ function Form() {
 
         // Validar url
         const urlVideo = valideUrl(url)
-        if(urlVideo && category) {
+        if (urlVideo && category) {
             // Guardar a URL e a Category
             const newVideo = { url, category }
             setVideo([...videos, newVideo])
-    
+
             localStorage.setItem("video", JSON.stringify([...videos, newVideo]))
             // Limpar o Form
             setUrl("")
@@ -51,7 +51,7 @@ function Form() {
     return (
         <section className={styles.container}>
             <h2>Cadastro de vídeo</h2>
-            <form onSubmit={ onSave }>
+            <form onSubmit={onSave}>
                 <div>
                     <label htmlFor="">URL do vídeo</label>
                     <input
@@ -60,8 +60,6 @@ function Form() {
                         required={true}
                         value={url}
                         onChange={e => setUrl(e.target.value)}
-                        maxLength="43"
-                        minLength="43"
                     />
                     <div>
                         <label htmlFor="">Categoria</label>
@@ -71,15 +69,17 @@ function Form() {
                         >
                             <option value="-">Selecione uma categoria</option>
                             {categories.map(item => {
-                                return <option value={ item }>{ item }</option>
+                                return <option value={item}>{item}</option>
                             })}
                         </select>
                     </div>
-                    <div>
-                        <button>Cadastrar</button>
-                    </div>
-                    <div>
-                        { errors }
+                    <div className={ styles.buttonAndErrorContainer }>
+                        <div>
+                            <button>Cadastrar</button>
+                        </div>
+                        {
+                            errors ? <div className={styles.errors}>{errors}</div> : null
+                        }
                     </div>
                 </div>
             </form>
