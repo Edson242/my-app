@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import VideoList from "../VideoList"
 import styles from "./SearchVideoList.module.css"
+import Loader from "../Loader"
 
 // Filtrando vídeos por categoria ou título
 function filterVideo(videos, searchText) {
@@ -8,8 +9,14 @@ function filterVideo(videos, searchText) {
 }
 
 function SearcVideoList({ videos }) {
+
     const [searchText, setSearchText] = useState("")
     const foundVideos = filterVideo(videos, searchText)
+
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 2000);
+    }, [])
 
     return (
         <section className={styles.container}>
@@ -19,10 +26,12 @@ function SearcVideoList({ videos }) {
                 onChange={e => setSearchText(e.target.value)}
                 value={searchText}
             />
-            <VideoList
-                videos={foundVideos}
-                emptyHeading={`Sem vídeos sobre ${searchText}`}
-            />
+            {loading ? <Loader /> :
+                <VideoList
+                    videos={foundVideos}
+                    emptyHeading={`Sem vídeos sobre ${ searchText }`}
+                />
+            }
         </section>
     )
 }
