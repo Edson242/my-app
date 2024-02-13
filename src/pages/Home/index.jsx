@@ -3,9 +3,9 @@ import Card from "../../components/Card";
 import Carousel from "../../components/Carousel";
 import Category, { categories, filterCategory } from "../../components/Category";
 import Container from "../../components/Container";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import ScrollToTopButton from "../../components/ScrollToTopButton";
 
 function Home() {
   return (
